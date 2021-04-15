@@ -1,25 +1,13 @@
 <template>
   <tbody>
     <TableBodyItem
-      id="101"
-      first-name="Sue"
-      last-name="Corson"
-      email="DWhalley@in.gov"
-      phone="(612)211-6296"
-    />
-    <TableBodyItem
-      id="102"
-      first-name="Lor"
-      last-name="Ipsumd"
-      email="dwhalley@in.gov"
-      phone="(612)211-6296"
-    />
-    <TableBodyItem
-      id="103"
-      first-name="Ips"
-      last-name="Umdolo"
-      email="dwhalley@in.gov"
-      phone="(612)211-6296"
+      :key="user.id"
+      :id="user.id"
+      :first-name="user.firstName"
+      :last-name="user.lastName"
+      :email="user.email"
+      :phone="user.phone"
+      v-for="user in users"
     />
   </tbody>
 </template>
@@ -29,10 +17,13 @@ import TableBodyItem from "@/components/Table/TableBody/TableBodyItem/TableBodyI
 export default {
   name: "TableBody",
   components: { TableBodyItem },
+  props: {
+    users: Array,
+  },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 tbody {
   display: contents;
 }

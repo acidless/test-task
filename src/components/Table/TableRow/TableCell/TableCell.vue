@@ -10,9 +10,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 td {
-  padding: 0.75em 0;
+  padding: 1em 0;
   border-bottom: 0.1em solid lightgray;
   text-overflow: ellipsis;
   overflow: hidden;
