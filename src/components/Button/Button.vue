@@ -10,13 +10,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 button {
-  background: var(--heading-bg);
+  background: var(--main-color);
   border: none;
   font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5em 0.25em;
+  padding: 0.5em;
   color: #fff;
   border-radius: 0.25em;
   position: relative;
@@ -26,6 +25,7 @@ button {
   justify-content: center;
   min-width: 2em;
   font-weight: bold;
+  user-select: none;
 
   span {
     position: relative;
@@ -39,7 +39,7 @@ button {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--heading-bg-hover);
+    background: var(--main-color-hover);
     clip-path: circle(0 at center);
     transition: 0.3s clip-path ease-in-out;
   }
@@ -48,6 +48,11 @@ button {
     &:after {
       clip-path: circle(100% at center);
     }
+  }
+
+  &:disabled {
+    background: var(--main-color-inactive);
+    pointer-events: none;
   }
 }
 </style>

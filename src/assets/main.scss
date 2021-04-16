@@ -6,6 +6,15 @@
 }
 
 html {
-  --heading-bg: #ff7373;
-  --heading-bg-hover: #cf5555;
+  --main-color: #ff7373;
+  --main-color-hover: #cf5555;
+  --main-color-inactive: #fa8c8c;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: #fff;
 }

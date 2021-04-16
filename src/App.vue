@@ -1,41 +1,82 @@
 <template>
-  <div>
-    <Table :data="usersData.data.value" />
-    <Pagination
-      :on-previous-page="newPageHandler"
-      :on-next-page="newPageHandler"
+  <main>
+    <DataSizeChoice @setDataSize="setDataSize" />
+    <Table
+      :handle-sort="sort"
+      :is-loading="isLoading"
+      :data="usersPaginatedData"
     />
-  </div>
+    <Pagination :is-last-page="isLastPage" @newPage="newPageHandler" />
+  </main>
 </template>
 
 <script>
 import Table from "./components/Table/Table";
 import Pagination from "@/components/Pagination/Pagination";
 import useAPI from "../utils/hooks/useAPI";
-import { onMounted } from "vue";
+import { onMounted, reactive, ref, watch } from "vue";
+import useSort from "../utils/hooks/useSort";
+import DataSizeChoice from "@/components/DataSizeChoice/DataSizeChoice";
 
 export default {
   name: "App",
   components: {
+    DataSizeChoice,
     Pagination,
     Table,
   },
   setup() {
-    let usersData = useAPI(
-      () =>
-        "http://www.filltext.com/?rows=30&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}",
+    const limit = 16;
+
+    const { execute, data, isLoading } = useAPI(
+      (size) =>
+        `http://www.filltext.com/?rows=${size}&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}`,
       async (response) => response.json()
     );
+    const isLastPage = ref(false);
+    const currentPage = ref(1);
+    const executeSort = useSort(data);
+    const dataSize = ref(0);
 
-    onMounted(newPageHandler);
+    let currentSort = reactive({ sortKey: "id", order: 1 });
+    let usersPaginatedData = ref([]);
 
-    function newPageHandler() {
-      usersData.execute();
+    watch(dataSize, async () => {
+      await execute(dataSize.value);
+      executeSort(currentSort);
+      newPageHandler(currentPage.value);
+    });
+
+    onMounted(async () => {
+      setDataSize(32);
+    });
+
+    function newPageHandler(page) {
+      currentPage.value = page;
+      const skip = (page - 1) * limit;
+      usersPaginatedData.value = data.value.slice(skip, skip + limit);
+      isLastPage.value = !data.value[skip + limit + 1];
+    }
+
+    function sort(sortObj) {
+      if (data.value) {
+        currentSort = sortObj;
+        executeSort(currentSort);
+        newPageHandler(currentPage.value);
+      }
+    }
+
+    function setDataSize(size) {
+      dataSize.value = size;
     }
 
     return {
-      usersData,
+      usersPaginatedData,
+      isLoading,
       newPageHandler,
+      isLastPage,
+      sort,
+      setDataSize,
     };
   },
 };
@@ -46,7 +87,5 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 </style>

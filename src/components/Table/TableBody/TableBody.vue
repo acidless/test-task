@@ -1,7 +1,7 @@
 <template>
   <tbody>
     <TableBodyItem
-      :key="user.id"
+      :key="user.phone"
       :id="user.id"
       :first-name="user.firstName"
       :last-name="user.lastName"
