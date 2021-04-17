@@ -1,6 +1,14 @@
+import { ref, watch } from "vue";
+
 function useSort(data) {
+  const currentData = ref(null);
+
+  watch(data, () => {
+    currentData.value = [...data.value];
+  });
+
   return function execute({ sortKey, order }) {
-    data.value = data.value.sort((a, b) => {
+    return currentData.value.sort((a, b) => {
       if (a[sortKey] === b[sortKey]) {
         return 0;
       } else if (a[sortKey] < b[sortKey]) {

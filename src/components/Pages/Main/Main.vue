@@ -37,13 +37,13 @@ export default {
 
     onMounted(async () => {
       await execute(props.dataSize);
-      executeSort(currentSort);
+      data.value = executeSort(currentSort);
     });
 
     function sort(sortObj) {
       if (data.value) {
         currentSort = sortObj;
-        executeSort(currentSort);
+        data.value = executeSort(currentSort);
       }
     }
 
