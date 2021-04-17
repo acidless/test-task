@@ -1,12 +1,9 @@
 <template>
   <tbody>
     <TableBodyItem
+      @selectUser="selectUser"
       :key="user.phone"
-      :id="user.id"
-      :first-name="user.firstName"
-      :last-name="user.lastName"
-      :email="user.email"
-      :phone="user.phone"
+      :user="user"
       v-for="user in users"
     />
   </tbody>
@@ -19,6 +16,7 @@ export default {
   components: { TableBodyItem },
   props: {
     users: Array,
+    selectUser: Function,
   },
 };
 </script>

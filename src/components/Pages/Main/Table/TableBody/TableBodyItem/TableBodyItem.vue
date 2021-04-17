@@ -1,10 +1,10 @@
 <template>
-  <TableRow>
-    <TableCell>{{ id }}</TableCell>
-    <TableCell>{{ firstName }}</TableCell>
-    <TableCell>{{ lastName }}</TableCell>
-    <TableCell>{{ email }}</TableCell>
-    <TableCell>{{ phone }}</TableCell>
+  <TableRow class="user-info" @click="select">
+    <TableCell>{{ user.id }}</TableCell>
+    <TableCell>{{ user.firstName }}</TableCell>
+    <TableCell>{{ user.lastName }}</TableCell>
+    <TableCell>{{ user.email }}</TableCell>
+    <TableCell>{{ user.phone }}</TableCell>
   </TableRow>
 </template>
 
@@ -15,11 +15,24 @@ export default {
   name: "TableBodyItem",
   components: { TableRow, TableCell },
   props: {
-    id: Number,
-    firstName: String,
-    lastName: String,
-    email: String,
-    phone: String,
+    user: Object,
+  },
+  methods: {
+    select() {
+      this.$emit("selectUser", this.$props.user);
+    },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.user-info {
+  cursor: pointer;
+
+  &:hover {
+    td {
+      background: var(--table-hover);
+    }
+  }
+}
+</style>

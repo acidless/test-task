@@ -2,7 +2,7 @@
   <table class="users-table">
     <TableHead @sort="handleSort" />
     <Loader v-if="isLoading" />
-    <TableBody v-else :users="data" />
+    <TableBody :select-user="selectUser" v-else :users="data" />
   </table>
 </template>
 
@@ -18,6 +18,7 @@ export default {
     data: Array,
     isLoading: Boolean,
     handleSort: Function,
+    selectUser: Function,
   },
 };
 </script>

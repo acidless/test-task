@@ -40,6 +40,7 @@ export default {
 <style lang="scss" scoped>
 .pagination {
   text-align: center;
+  margin-bottom: 2em;
 
   button:not(:last-child) {
     margin-right: 0.5em;

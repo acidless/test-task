@@ -1,7 +1,7 @@
 <template>
   <div class="top-bar">
-    <div class="top-bar__buttons">
-      <Button>Search</Button>
+    <div class="top-bar__actions">
+      <Search @search="filter" />
       <Button @click="isCreateMode = !isCreateMode">{{
         isCreateMode ? "-" : "+"
       }}</Button>
@@ -14,12 +14,14 @@
 import Button from "@/components/Button/Button";
 import { ref } from "vue";
 import CreateUser from "@/components/Pages/Main/TopBar/CreateUser/CreateUser";
+import Search from "@/components/Pages/Main/TopBar/Search/Search";
 export default {
   name: "TopBar",
   props: {
     createUser: Function,
+    filter: Function,
   },
-  components: { CreateUser, Button },
+  components: { Search, CreateUser, Button },
   setup() {
     const isCreateMode = ref(false);
 
@@ -34,7 +36,7 @@ export default {
 .top-bar {
   padding: 1em 3em;
 
-  &__buttons {
+  &__actions {
     display: flex;
     margin-bottom: 2em;
     align-items: center;
