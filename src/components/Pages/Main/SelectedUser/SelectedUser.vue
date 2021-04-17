@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { watch } from "vue";
+import { onMounted, watch } from "vue";
 
 export default {
   name: "SelectedUser",
@@ -37,6 +37,7 @@ export default {
       });
     }
 
+    onMounted(scroll);
     watch(props, scroll);
   },
 };

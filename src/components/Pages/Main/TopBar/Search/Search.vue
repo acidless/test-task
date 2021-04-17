@@ -1,8 +1,8 @@
 <template>
-  <div class="top-bar__search">
+  <form @submit="onSearchClick" class="top-bar__search">
     <input v-model="search" type="text" />
-    <Button @click="onSearchClick">Search</Button>
-  </div>
+    <Button type="submit">Search</Button>
+  </form>
 </template>
 
 <script>
@@ -15,7 +15,9 @@ export default {
   setup(props, { emit }) {
     const search = ref("");
 
-    function onSearchClick() {
+    function onSearchClick(e) {
+      e.preventDefault();
+
       emit("search", search.value.toLowerCase().trim());
     }
 

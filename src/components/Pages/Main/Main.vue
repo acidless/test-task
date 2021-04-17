@@ -20,6 +20,7 @@ import TopBar from "@/components/Pages/Main/TopBar/TopBar";
 import usePagination from "@/utils/hooks/usePagination";
 import useFilter from "@/utils/hooks/useFilter";
 import SelectedUser from "@/components/Pages/Main/SelectedUser/SelectedUser";
+import { ASCENDING, ROWS_PER_PAGE } from "@/utils/consts";
 
 export default {
   name: "Main",
@@ -42,23 +43,20 @@ export default {
     const executeSort = useSort(filteredData);
     const { onNewPage, isLastPage, paginatedData } = usePagination(
       filteredData,
-      16
+      ROWS_PER_PAGE
     );
+    // Выбранный пользователь
     let selectedUser = ref(null);
-    let currentSort = reactive({ sortKey: "id", order: 1 });
+    // Объект с данными для сортировки
+    let currentSort = reactive({ sortKey: "id", order: ASCENDING });
 
     onMounted(async () => {
       await execute(props.dataSize);
-      if (filteredData.value) {
-        filteredData.value = executeSort(currentSort);
-      }
     });
 
     function sort(sortObj) {
-      if (filteredData.value) {
-        currentSort = sortObj;
-        filteredData.value = executeSort(currentSort);
-      }
+      currentSort = sortObj;
+      filteredData.value = executeSort(currentSort);
     }
 
     function createUser(user) {
@@ -67,10 +65,9 @@ export default {
       }
     }
 
-    function filter(filterText) {
-      if (filteredData.value) {
-        executeFilter(filterText);
-      }
+    async function filter(filterStr) {
+      await executeFilter(filterStr);
+      sort(currentSort);
     }
 
     function setSelectedUser(user) {

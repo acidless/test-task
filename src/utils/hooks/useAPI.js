@@ -6,9 +6,11 @@ function useAPI(urlFactory, handleResponse) {
   const error = ref(null);
 
   async function execute(...args) {
+    // Вызываем колбэк, который создает юрл на основе параметров
     const url = urlFactory(...args);
     isLoading.value = true;
     try {
+      // Получаем ответ, обрабатываем его
       const response = await fetch(url);
       data.value = await handleResponse(response);
 

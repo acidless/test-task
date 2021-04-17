@@ -17,25 +17,28 @@
 import TableRow from "@/components/Pages/Main/Table/TableRow/TableRow";
 import TableHeading from "@/components/Pages/Main/Table/TableHead/TableHeading/TableHeading";
 import { ref } from "vue";
+import { UNSORTED } from "@/utils/consts";
 export default {
   name: "TableHead",
   components: { TableHeading, TableRow },
   setup(props, { emit }) {
     const headings = ref([
-      { sortKey: "id", title: "ID", order: -1 },
-      { sortKey: "firstName", title: "First Name", order: -1 },
-      { sortKey: "lastName", title: "Last Name", order: -1 },
-      { sortKey: "email", title: "Email", order: -1 },
-      { sortKey: "phone", title: "Phone", order: -1 },
+      { sortKey: "id", title: "ID", order: UNSORTED },
+      { sortKey: "firstName", title: "First Name", order: UNSORTED },
+      { sortKey: "lastName", title: "Last Name", order: UNSORTED },
+      { sortKey: "email", title: "Email", order: UNSORTED },
+      { sortKey: "phone", title: "Phone", order: UNSORTED },
     ]);
 
     function sortBy(sortKey, order) {
       headings.value = headings.value.map((heading) => {
+        // Если находим ключ, по которому фильтруем, устанавливаем элементу порядок
         if (sortKey === heading.sortKey) {
           return { ...heading, order };
         }
 
-        return { ...heading, order: -1 };
+        // Иначе убираем порядок фильтрации
+        return { ...heading, order: UNSORTED };
       });
 
       emit("sort", { sortKey, order });

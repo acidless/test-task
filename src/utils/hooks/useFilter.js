@@ -5,20 +5,25 @@ function useFilter(data) {
   const currentData = ref(null);
 
   watch(data, () => {
-    currentData.value = data.value;
+    // Устанавливаем текущие данные для фильтрации
+    currentData.value = [...data.value];
+
+    //Если нет отфилтрованных данных, копируем текущие
     if (!filteredData.value) {
-      filteredData.value = currentData.value;
+      filteredData.value = [...currentData.value];
     }
   });
 
   return {
     filteredData,
     executeFilter: function (filter) {
-      filteredData.value = currentData.value.filter((item) => {
-        return Object.keys(item).some((key) => {
-          return item[key].toString().toLowerCase().includes(filter);
+      if (currentData.value) {
+        filteredData.value = currentData.value.filter((item) => {
+          return Object.keys(item).some((key) => {
+            return item[key].toString().toLowerCase().includes(filter);
+          });
         });
-      });
+      }
     },
   };
 }

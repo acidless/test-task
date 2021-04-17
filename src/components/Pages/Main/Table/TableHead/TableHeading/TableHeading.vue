@@ -2,7 +2,9 @@
   <th>
     <button @click="onClick">
       {{ title }}
-      <span :class="{ ascending: !!currentOrder }" v-if="currentOrder !== -1"
+      <span
+        :class="{ ascending: !!currentOrder }"
+        v-if="currentOrder !== UNSORTED"
         >&#9658;</span
       >
     </button>
@@ -10,6 +12,8 @@
 </template>
 
 <script>
+import { ASCENDING, DESCENDING, UNSORTED } from "@/utils/consts";
+
 export default {
   name: "TableHeading",
   props: {
@@ -20,11 +24,16 @@ export default {
 
   setup(props, { emit }) {
     function onClick() {
-      emit("sortBy", props.sortKey, props.currentOrder === 1 ? 0 : 1);
+      emit(
+        "sortBy",
+        props.sortKey,
+        !props.currentOrder ? ASCENDING : DESCENDING
+      );
     }
 
     return {
       onClick,
+      UNSORTED,
     };
   },
 };

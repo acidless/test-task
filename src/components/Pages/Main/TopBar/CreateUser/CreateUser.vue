@@ -63,6 +63,7 @@ export default {
     const isCompleted = ref(false);
 
     watch(values, () => {
+      // При вводе данных наблюдаем, все ли поля заполнены.
       isCompleted.value = Object.keys(values).every((key) => {
         return Boolean(values[key].trim());
       });
@@ -72,6 +73,7 @@ export default {
       e.preventDefault();
       emit("createUser", { ...values, id: +values.id });
 
+      // Очищаем форму
       Object.keys(values).forEach((key) => (values[key] = ""));
     }
 

@@ -10,14 +10,16 @@
 
 <script>
 import Button from "@/components/Button/Button";
+import { LARGE_DATA_SIZE, SMALL_DATA_SIZE } from "@/utils/consts";
+
 export default {
   components: { Button },
   methods: {
     setSmallDataSize() {
-      this.$emit("setDataSize", 32);
+      this.$emit("setDataSize", SMALL_DATA_SIZE);
     },
     setLargeDataSize() {
-      this.$emit("setDataSize", 1000);
+      this.$emit("setDataSize", LARGE_DATA_SIZE);
     },
   },
 };

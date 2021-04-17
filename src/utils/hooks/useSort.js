@@ -8,14 +8,19 @@ function useSort(data) {
   });
 
   return function execute({ sortKey, order }) {
-    return currentData.value.sort((a, b) => {
-      if (a[sortKey] === b[sortKey]) {
-        return 0;
-      } else if (a[sortKey] < b[sortKey]) {
-        return order ? -1 : 1;
-      }
-      return order ? 1 : -1;
-    });
+    if (currentData.value) {
+      return currentData.value.sort((a, b) => {
+        // Устанавливаем результат сравнения, в зависимости от порядка
+        const resultWithOrder = order ? 1 : -1;
+
+        if (a[sortKey] === b[sortKey]) {
+          return 0;
+        } else if (a[sortKey] < b[sortKey]) {
+          return resultWithOrder;
+        }
+        return -resultWithOrder;
+      });
+    }
   };
 }
 
