@@ -1,7 +1,10 @@
 <template>
   <div class="data-size-choice">
-    <Button>Small</Button>
-    <Button>Large</Button>
+    <h1>Choose data size</h1>
+    <div class="data-size-choice__buttons">
+      <Button @click="setSmallDataSize">Small</Button>
+      <Button @click="setLargeDataSize">Large</Button>
+    </div>
   </div>
 </template>
 
@@ -24,6 +27,15 @@ export default {
 .data-size-choice {
   padding: 0.5em;
   margin-bottom: 1em;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h1 {
+    margin-bottom: 0.25em;
+  }
 
   button:not(:last-child) {
     margin-right: 0.5em;

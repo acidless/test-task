@@ -11,6 +11,7 @@ function useAPI(urlFactory, handleResponse) {
     try {
       const response = await fetch(url);
       data.value = await handleResponse(response);
+
       return data;
     } catch (e) {
       error.value = e;

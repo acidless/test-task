@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import TableCell from "@/components/Table/TableRow/TableCell/TableCell";
-import TableRow from "@/components/Table/TableRow/TableRow";
+import TableCell from "@/components/Pages/Main/Table/TableRow/TableCell/TableCell";
+import TableRow from "@/components/Pages/Main/Table/TableRow/TableRow";
 export default {
   name: "TableBodyItem",
   components: { TableRow, TableCell },

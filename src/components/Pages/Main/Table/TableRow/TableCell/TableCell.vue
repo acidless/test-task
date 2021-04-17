@@ -12,10 +12,12 @@ export default {
 
 <style lang="scss">
 td {
-  padding: 1em 0;
+  padding: 1em 0.25em;
   border-bottom: 0.1em solid lightgray;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  color: gray;
+  text-align: center;
 }
 </style>

@@ -15,7 +15,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./src/assets/animations";
 .loader-wrapper {
   display: flex;
   justify-content: center;

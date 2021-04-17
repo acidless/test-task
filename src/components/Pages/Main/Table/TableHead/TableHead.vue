@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import TableRow from "@/components/Table/TableRow/TableRow";
-import TableHeading from "@/components/Table/TableHead/TableHeading/TableHeading";
+import TableRow from "@/components/Pages/Main/Table/TableRow/TableRow";
+import TableHeading from "@/components/Pages/Main/Table/TableHead/TableHeading/TableHeading";
 import { ref } from "vue";
 export default {
   name: "TableHead",

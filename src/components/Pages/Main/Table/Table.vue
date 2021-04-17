@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import TableBody from "@/components/Table/TableBody/TableBody";
+import TableBody from "@/components/Pages/Main/Table/TableBody/TableBody";
 import Loader from "@/components/Loader/Loader";
-import TableHead from "@/components/Table/TableHead/TableHead";
+import TableHead from "@/components/Pages/Main/Table/TableHead/TableHead";
 
 export default {
   name: "Table",
@@ -29,8 +29,9 @@ export default {
   display: grid;
   grid-template-columns:
     minmax(50px, 1fr)
-    repeat(4, minmax(150px, 1.75fr));
+    repeat(4, minmax(100px, 1.75fr));
   overflow: auto;
   margin-bottom: 1em;
+  animation: 0.8s FadeIn linear;
 }
 </style>

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import TableBodyItem from "@/components/Table/TableBody/TableBodyItem/TableBodyItem";
+import TableBodyItem from "@/components/Pages/Main/Table/TableBody/TableBodyItem/TableBodyItem";
 export default {
   name: "TableBody",
   components: { TableBodyItem },
