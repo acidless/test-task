@@ -14,7 +14,7 @@ export default {
 button {
   background: var(--main-color);
   border: none;
-  font-size: 1.5rem;
+  font-size: 2.25rem;
   padding: 0.5em;
   color: #fff;
   border-radius: 0.25em;

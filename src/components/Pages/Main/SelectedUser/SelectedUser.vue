@@ -49,7 +49,7 @@ export default {
   animation: 0.5s FadeIn linear;
 
   p {
-    font-size: 1.2rem;
+    font-size: 2rem;
     b {
       color: var(--main-color-hover);
     }

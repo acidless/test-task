@@ -31,11 +31,9 @@ export default {
 
 <style lang="scss" scoped>
 .top-bar__search {
-  display: flex;
+  display: grid;
   align-items: center;
-
-  input {
-    margin-right: 1em;
-  }
+  grid-template-columns: minmax(150px, 3fr) minmax(70px, 1fr);
+  grid-gap: 1em;
 }
 </style>

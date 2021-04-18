@@ -43,4 +43,14 @@ export default {
     justify-content: space-between;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .top-bar .top-bar__actions {
+    flex-direction: column-reverse;
+
+    button {
+      margin-bottom: 1em;
+    }
+  }
+}
 </style>

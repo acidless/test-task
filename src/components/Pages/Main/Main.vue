@@ -6,7 +6,11 @@
     :is-loading="isLoading"
     :data="paginatedData"
   />
-  <Pagination :is-last-page="isLastPage" @newPage="onNewPage" />
+  <Pagination
+    :current-page="currentPage"
+    :is-last-page="isLastPage"
+    @newPage="onNewPage"
+  />
   <SelectedUser v-if="selectedUser" :current-user="selectedUser" />
 </template>
 
@@ -41,7 +45,7 @@ export default {
     );
     const { filteredData, executeFilter } = useFilter(data);
     const executeSort = useSort(filteredData);
-    const { onNewPage, isLastPage, paginatedData } = usePagination(
+    const { onNewPage, isLastPage, currentPage, paginatedData } = usePagination(
       filteredData,
       ROWS_PER_PAGE
     );
@@ -78,6 +82,7 @@ export default {
       paginatedData,
       isLoading,
       onNewPage,
+      currentPage,
       isLastPage,
       sort,
       createUser,

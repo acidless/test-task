@@ -7,29 +7,24 @@
 
 <script>
 import Button from "@/components/Button/Button";
-import { ref } from "vue";
 export default {
   name: "Pagination",
   components: { Button },
   props: {
     isLastPage: Boolean,
+    currentPage: Number,
   },
 
   setup(props, { emit }) {
-    const currentPage = ref(1);
-
     function onPreviousPage() {
-      currentPage.value -= 1;
-      emit("newPage", currentPage.value);
+      emit("newPage", props.currentPage - 1);
     }
 
     function onNextPage() {
-      currentPage.value += 1;
-      emit("newPage", currentPage.value);
+      emit("newPage", props.currentPage + 1);
     }
 
     return {
-      currentPage,
       onPreviousPage,
       onNextPage,
     };

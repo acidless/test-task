@@ -12,6 +12,7 @@ export default {
 
 <style lang="scss">
 td {
+  font-size: 1.75rem;
   padding: 1em 0.25em;
   border-bottom: 0.1em solid lightgray;
   text-overflow: ellipsis;

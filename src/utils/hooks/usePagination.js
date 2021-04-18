@@ -1,8 +1,8 @@
 import { ref, watch } from "vue";
 
 function usePagination(data, limit) {
-  const paginatedData = ref([]);
   const currentPage = ref(1);
+  const paginatedData = ref([]);
   const isLastPage = ref(false);
 
   function onNewPage(page) {
@@ -11,6 +11,7 @@ function usePagination(data, limit) {
       currentPage.value = page;
 
       const skip = (page - 1) * limit;
+
       paginatedData.value = data.value.slice(skip, skip + limit);
 
       // Если следующего элемента не существует, ставим флаг последней страницы
@@ -21,7 +22,7 @@ function usePagination(data, limit) {
   watch(data, () => {
     // Если данные изменились и на странице элементов больше, чем лимит, то вызываем обработчик новой страницы
     if (data.value.length > limit) {
-      onNewPage(currentPage.value);
+      onNewPage(1);
     } else {
       paginatedData.value = data.value;
       isLastPage.value = true;
@@ -32,6 +33,7 @@ function usePagination(data, limit) {
     onNewPage,
     paginatedData,
     isLastPage,
+    currentPage,
   };
 }
 
