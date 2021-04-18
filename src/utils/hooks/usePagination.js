@@ -20,13 +20,7 @@ function usePagination(data, limit) {
   }
 
   watch(data, () => {
-    // Если данные изменились и на странице элементов больше, чем лимит, то вызываем обработчик новой страницы
-    if (data.value.length > limit) {
-      onNewPage(1);
-    } else {
-      paginatedData.value = data.value;
-      isLastPage.value = true;
-    }
+    onNewPage(1);
   });
 
   return {
