@@ -6,11 +6,11 @@ function useFilter(data) {
 
   watch(data, () => {
     // Устанавливаем текущие данные для фильтрации
-    currentData.value = [...data.value];
+    currentData.value = data.value;
 
-    //Если нет отфилтрованных данных, копируем текущие
+    //Если нет отфильтрованных данных, берем текущее
     if (!filteredData.value) {
-      filteredData.value = [...currentData.value];
+      filteredData.value = currentData.value;
     }
   });
 
