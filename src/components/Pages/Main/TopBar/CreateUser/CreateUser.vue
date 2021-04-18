@@ -53,7 +53,7 @@ export default {
   components: { Button },
   setup(props, { emit }) {
     let values = reactive({
-      id: null,
+      id: "",
       firstName: "",
       lastName: "",
       email: "",
@@ -71,7 +71,7 @@ export default {
 
     function onSubmit(e) {
       e.preventDefault();
-      emit("createUser", { ...values, id: +values.id });
+      emit("createUser", { ...values, id: Math.abs(+values.id) });
 
       // Очищаем форму
       Object.keys(values).forEach((key) => (values[key] = ""));

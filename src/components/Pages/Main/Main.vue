@@ -60,8 +60,8 @@ export default {
     }
 
     function createUser(user) {
-      if (filteredData.value) {
-        filteredData.value = [user, ...filteredData.value];
+      if (data.value) {
+        data.value = [user, ...data.value];
       }
     }
 
